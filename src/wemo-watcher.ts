@@ -72,13 +72,12 @@ class WemoHandler {
             });
 
             client.on('binaryState', value => {
+                value = Number(value);
+                cachedDevice.isOn = value === 1;
                 if (this.client) {
                     let status = '<font color="red">off</font>';
-                    cachedDevice.isOn = false;
-                    if (value === 1) {
-                        status = '<font color="green">on</font>';
-                        cachedDevice.isOn = true;
-                    }
+                    if (value === 1) status = '<font color="green">on</font>';
+
                     const htmlMessage = name + " is now " + status;
                     LogService.info("WemoHandler[" + name + "]", striptags(htmlMessage));
                     this.client.sendMessage(config.targetRoomId, {
