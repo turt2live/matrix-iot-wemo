@@ -22,7 +22,7 @@ class WemoHandler {
     }
 
     public setDeviceState(name: string, on: boolean): boolean {
-        const device = this.devices.find(d => d.name === name);
+        const device = this.devices.find(d => d.name.toLowerCase() === name.toLowerCase());
         if (!device) return false;
 
         device.client.setBinaryState(on ? 1 : 0);
