@@ -16,13 +16,12 @@ export class CommandProcessor {
 
         const cmdArgs = message.substring("!wemo".length).trim().split(" ");
         if (cmdArgs[0] === "status") {
-            const htmlMessage = "Wemo Device Status:<br/><table><thead><tr>" +
+            const htmlMessage = "<table><thead><tr>" +
                 "<th>Device Name</th><th>Status</th>" +
                 "</tr></thead><tbody>" +
                 WemoWatcher.getDevices().map(d => "<tr><td>" + d.name + "</td><td>" + (d.isOn ? "on" : "off") + "</td></tr>").join("") +
                 "</tbody></table>";
-            const textMessage = "Wemo Device Status:\n" +
-                WemoWatcher.getDevices().map(d => d.name + " is " + (d.isOn ? "on" : "off")).join("\n");
+            const textMessage = WemoWatcher.getDevices().map(d => d.name + " is " + (d.isOn ? "on" : "off")).join("\n");
             this.client.sendMessage(roomId, {
                 formatted_body: htmlMessage,
                 format: "org.matrix.custom.html",
@@ -33,7 +32,7 @@ export class CommandProcessor {
             cmdArgs.splice(0, 1);
             const deviceName = cmdArgs.join(" ");
             if (WemoWatcher.setDeviceState(deviceName, cmdArgs[0] === "on")) {
-                this.client.sendMessage(roomId, "State updated");
+                this.client.sendNotice(roomId, "State updated");
             } else {
                 const htmlMessage = "<font color='red'>Device not found</font>";
                 this.client.sendMessage(roomId, {
@@ -48,8 +47,8 @@ export class CommandProcessor {
             const htmlMessage = "Wemo Help:<br/><pre><code>" +
                 "!wemo help            - This menu\n" +
                 "!wemo status          - List the status of each device\n" +
-                "!wemo on <device>     - Turn a device on\n" +
-                "!wemo off <device>     - Turn a device on\n" +
+                "!wemo on &lt;device&gt;     - Turn a device on\n" +
+                "!wemo off &lt;device&gt;    - Turn a device on\n" +
                 "</code></pre>";
             this.client.sendMessage(roomId, {
                 formatted_body: htmlMessage,
