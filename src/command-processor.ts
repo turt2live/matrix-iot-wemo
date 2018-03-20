@@ -29,9 +29,10 @@ export class CommandProcessor {
                 msgtype: "m.notice",
             });
         } else if (cmdArgs[0] === "on" || cmdArgs[0] === "off") {
+            const setOn = cmdArgs[0] === "on";
             cmdArgs.splice(0, 1);
             const deviceName = cmdArgs.join(" ");
-            if (WemoWatcher.setDeviceState(deviceName, cmdArgs[0] === "on")) {
+            if (WemoWatcher.setDeviceState(deviceName, setOn)) {
                 this.client.sendNotice(roomId, "State updated");
             } else {
                 const htmlMessage = "<font color='red'>Device not found</font>";
