@@ -1,0 +1,37 @@
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "ordered-imports": false,
+    "no-trailing-whitespace": "error",
+    "max-classes-per-file": {
+      "severity": "warning"
+    },
+    "object-literal-sort-keys": false,
+    "no-any": false,
+    "arrow-return-shorthand": true,
+    "no-magic-numbers": false,
+    "prefer-for-of": true,
+    "typedef": {
+      "severity": "warning"
+    },
+    "await-promise": true,
+    "curly": false,
+    "no-empty": {
+      "severity": "warning"
+    },
+    "no-invalid-this": true,
+    "no-string-throw": {
+      "severity": "warning"
+    },
+    "no-unused-expression": true,
+    "prefer-const": true,
+    "arrow-parens": false,
+    "no-string-literal": false,
+    "eofline": false,
+    "quotemark": false,
+    "whitespace": false,
+    "no-angle-bracket-type-assertion": false,
+    "array-type": false,
+    "max-line-length": false
+  }
+}

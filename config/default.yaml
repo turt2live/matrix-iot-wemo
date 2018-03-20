@@ -1,0 +1,16 @@
+homeserverUrl: "https://t2bot.io"
+accessToken: "YOUR_TOKEN_HERE"
+
+# Invite the bot to the room you specify here. Anyone in the room will be able to interact
+# with the bot.
+targetRoomId: "!your_room:matrix.org"
+
+# Settings for controlling how logging works
+logging:
+  file: logs/wemo.log
+  console: true
+  consoleLevel: info
+  fileLevel: verbose
+  rotate:
+    size: 52428800 # bytes, default is 50mb
+    count: 5
