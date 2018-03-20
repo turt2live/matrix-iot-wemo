@@ -21,9 +21,12 @@ class WemoHandler {
         this.client = client;
     }
 
-    public setDeviceState(name: string, on: boolean): void {
+    public setDeviceState(name: string, on: boolean): boolean {
         const device = this.devices.find(d => d.name === name);
-        if (device) device.client.setBinaryState(on ? 1 : 0);
+        if (!device) return false;
+
+        device.client.setBinaryState(on ? 1 : 0);
+        return true;
     }
 
     public getDevices(): { name: string, isOn: boolean }[] {
